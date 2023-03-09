@@ -3,6 +3,8 @@ terraform {
     bucket = "gyalai-terraform-states"
     key = "terraform/atlantis"
     region = "eu-central-1"
+
+    workspace_key_prefix = "terraform-ws"
   }
 }
 
