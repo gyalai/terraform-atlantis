@@ -1,0 +1,10 @@
+version: 3
+automerge: true
+delete_source_branch_on_merge: false
+projects:
+- name: simple-ec2
+  dir: simple-ec2
+  workspace: dev
+  autoplan: 
+    enabled: true
+    when_modified: ["*.tf", "terragrunt.hcl"]

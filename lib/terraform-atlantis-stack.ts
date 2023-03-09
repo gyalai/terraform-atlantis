@@ -6,6 +6,7 @@ import * as elbv2 from 'aws-cdk-lib/aws-elasticloadbalancingv2'
 import * as sm from 'aws-cdk-lib/aws-secretsmanager'
 import { CfnOutput } from 'aws-cdk-lib';
 import * as ec2 from 'aws-cdk-lib/aws-ec2';
+import * as s3 from 'aws-cdk-lib/aws-s3';
 
 export interface AtlantisStackProps {
   
@@ -93,5 +94,8 @@ export class TerraformAtlantisStack extends cdk.Stack {
       value: lb.loadBalancerDnsName
     });
 
+    const terraformS3Bucket = s3.Bucket.fromBucketName(this, 'TerraformS3Bucket', 'gyalai-terraform-states');
+
+    terraformS3Bucket.grantReadWrite(atlantisTaskDefinition.taskRole, "terraform-ws/*");
   }
 }
